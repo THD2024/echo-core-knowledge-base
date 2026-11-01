@@ -14,6 +14,19 @@
 4. Identify what is accepted, frozen, proposed and still open.
 5. Do not ask the owner to repeat information already available in current project sources.
 
+## Architectural objective — hard requirement
+
+The primary engineering objective is to optimize and establish Echo Core's **internal foundational architecture**, not to keep extending the existing application by attaching more external services, plugins, wrappers, workflows or feature modules.
+
+- Start from the responsibilities and dependency structure of the source itself. Determine architectural layer by **responsibility, ownership, lifecycle and dependency direction** — never infer that code is foundational merely because it lives inside the repository or a directory with a foundational-sounding name.
+- Separate the foundational Core from application/product-level capabilities. Existing file-backed memory features, toolchains, task trees, agents/subagents, workflows and CLI/session features are evidence about the current application, not proof that the corresponding Echo Core foundational systems exist.
+- Audit the foundation on its own terms: core responsibilities, lifecycle, resource ownership, authority and permission boundaries, communication primitives, failure isolation and extension contracts.
+- When a foundational responsibility is missing, misplaced or structurally unsound, evaluate changing the internal source architecture. Do not default to adding another external component or integration to conceal the gap.
+- Existing integrations may be documented as compatibility constraints or migration inputs, but must not dictate the future Core architecture or be mistaken for its implementation.
+- Do not move every capability into the Core. Keep application-level features outside the foundation when they are not essential to the Core's minimal responsibilities; make them depend on stable foundational contracts instead.
+- Use the following architectural test during audits: **if application-level toolchains, task trees, file-memory features, agents and workflows were removed, would the remaining source form a coherent Core with clear responsibilities, complete lifecycle and explicit boundaries?** Identify gaps from the answer; do not paper over them with add-ons.
+- Preserve accepted and frozen systems, including Immune V1. Their existing implementation and acceptance criteria are evidence and compatibility constraints, not a mandate to shape the new foundation around their current integration points. Any adaptation must be separately proposed, approved and validated.
+
 ## During design work
 
 - Discuss responsibility boundaries before implementation details.
@@ -40,8 +53,8 @@ Use these status labels consistently:
 - **Verified:** passed a defined test or audit.
 - **Accepted:** design direction approved by owner, not necessarily implemented.
 - **Frozen:** protected from casual modification.
-- **Proposed:** awaiting owner approval.
-- **Open:** unresolved.
+- **Proposed:** suggestion awaiting approval.
+- **Open:** unresolved question.
 
 Keep CURRENT-STATE.md concise and current. Keep detailed reasoning in the relevant architecture or decision document. Link to canonical source code and evidence rather than duplicating large artifacts.
 
