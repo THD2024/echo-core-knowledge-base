@@ -30,6 +30,7 @@
 - [Project Mission](01-project-overview/PROJECT-MISSION.md) — purpose and design principles.
 - [Design Philosophy and Biological Inspiration](01-project-overview/DESIGN-PHILOSOPHY-AND-BIOLOGICAL-INSPIRATION.md) — long-term goal, organism-inspired principles, bounded autonomy and essence-first design.
 - [System Boundaries](02-architecture/SYSTEM-BOUNDARIES.md) — Model, Body, Runtime, Host, Interface and system responsibilities.
+- [High-Level System Map](02-architecture/HIGH-LEVEL-SYSTEM-MAP.md) — conceptual system catalogue, responsibilities, interaction loops and global design principles.
 - [Core Runtime V1](02-architecture/CORE-RUNTIME-V1.md) — accepted Runtime design direction.
 - [Accepted Directions](03-design-decisions/ACCEPTED-DIRECTIONS.md) — decisions and their status.
 - [Implementation Status](04-implementation-status/STATUS.md) — implemented vs. planned.
