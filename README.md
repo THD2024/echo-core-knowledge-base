@@ -28,6 +28,7 @@
 
 - [Current State](CURRENT-STATE.md) — concise status and next action.
 - [Project Mission](01-project-overview/PROJECT-MISSION.md) — purpose and design principles.
+- [Design Philosophy and Biological Inspiration](01-project-overview/DESIGN-PHILOSOPHY-AND-BIOLOGICAL-INSPIRATION.md) — long-term goal, organism-inspired principles, bounded autonomy and essence-first design.
 - [System Boundaries](02-architecture/SYSTEM-BOUNDARIES.md) — Model, Body, Runtime, Host, Interface and system responsibilities.
 - [Core Runtime V1](02-architecture/CORE-RUNTIME-V1.md) — accepted Runtime design direction.
 - [Accepted Directions](03-design-decisions/ACCEPTED-DIRECTIONS.md) — decisions and their status.
