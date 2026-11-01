@@ -26,16 +26,32 @@
 
 ## Documentation map
 
+The knowledge base deliberately separates the project's overall conception from detailed engineering specifications.
+
+### A. Overall vision, conception and philosophy
+
+These documents describe what Echo Core is intended to become, why its conceptual systems exist, and the principles that guide future design. They are not detailed specifications or implementation claims.
+
+- [Project Mission](01-project-overview/PROJECT-MISSION.md) — purpose and central Model / Body conception.
+- [Design Philosophy and Biological Inspiration](01-project-overview/DESIGN-PHILOSOPHY-AND-BIOLOGICAL-INSPIRATION.md) — long-term goal, biological inspiration, autonomy and essence-first principles.
+- [Conceptual System Map](02-architecture/HIGH-LEVEL-SYSTEM-MAP.md) — conceptual system roles, broad relationships, interaction pattern and open questions.
+
+### B. Specific system designs and engineering architecture
+
+These documents specify particular systems or concrete architectural boundaries. They must be read independently from the high-level conception.
+
+- [System Boundaries](02-architecture/SYSTEM-BOUNDARIES.md) — concrete boundaries among Model, Runtime, Host, Assembly, Interface and functional systems.
+- [Core Runtime V1](02-architecture/CORE-RUNTIME-V1.md) — specific accepted Runtime design; not implemented.
+- [Accepted Directions](03-design-decisions/ACCEPTED-DIRECTIONS.md) — accepted engineering decisions and their status.
+
+### C. Current state and evidence
+
 - [Current State](CURRENT-STATE.md) — concise status and next action.
-- [Project Mission](01-project-overview/PROJECT-MISSION.md) — purpose and design principles.
-- [Design Philosophy and Biological Inspiration](01-project-overview/DESIGN-PHILOSOPHY-AND-BIOLOGICAL-INSPIRATION.md) — long-term goal, organism-inspired principles, bounded autonomy and essence-first design.
-- [System Boundaries](02-architecture/SYSTEM-BOUNDARIES.md) — Model, Body, Runtime, Host, Interface and system responsibilities.
-- [High-Level System Map](02-architecture/HIGH-LEVEL-SYSTEM-MAP.md) — conceptual system catalogue, responsibilities, interaction loops and global design principles.
-- [Core Runtime V1](02-architecture/CORE-RUNTIME-V1.md) — accepted Runtime design direction.
-- [Accepted Directions](03-design-decisions/ACCEPTED-DIRECTIONS.md) — decisions and their status.
 - [Implementation Status](04-implementation-status/STATUS.md) — implemented vs. planned.
 - [Audit Register](05-audits-and-evidence/AUDIT-REGISTER.md) — R1/R2 and Immune V1 evidence register.
 - [AI Collaboration](AI-COLLABORATION.md) — working protocol for future assistant sessions.
+
+**Classification rule:** Overall philosophy and conceptual system roles belong to section A. A concrete system specification such as Immune System V1 or Core Runtime V1 belongs to section B. Implementation facts and verification evidence belong to section C. A document may cross-reference another layer, but must not merge their status or level of detail.
 
 ## Maintenance
 
