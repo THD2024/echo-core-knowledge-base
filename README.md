@@ -44,6 +44,8 @@ These documents specify particular systems or concrete architectural boundaries.
 - [Core Runtime V1](02-architecture/CORE-RUNTIME-V1.md) — specific accepted Runtime design; not implemented.
 - [Accepted Directions](03-design-decisions/ACCEPTED-DIRECTIONS.md) — accepted engineering decisions and their status.
 
+**Archive gap:** Echo Immune System V1 is verified and frozen, but this knowledge base currently contains only its summary/status and audit-register notes, not the complete detailed V1 specification or raw audit artifacts. These should be linked or imported from the canonical source project without changing the frozen implementation.
+
 ### C. Current state and evidence
 
 - [Current State](CURRENT-STATE.md) — concise status and next action.
