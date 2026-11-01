@@ -13,7 +13,11 @@ Last updated: 2026-11-01
 | Memory | **Not implemented** | Architecture and lifecycle concepts discussed; implementation not established. |
 | Unified Interface | **Not implemented** | Communication mechanism between Model and functional systems; protocol remains open. |
 | Core Assembly | **Accepted conceptual responsibility; not implemented** | Application-level assembly of Model and Body systems. |
-| Task System / Nervous System | **Not implemented** | No implementation claim. |
+| Nervous / Execution conceptual roles | **Conceptual; not implementation claims** | Nervous thinking/analysis/coordination and Execution task/action/feedback roles are recorded in the Conceptual System Map. Whether task lifecycle warrants a distinct Task System remains open. |
+
+## Overall conception
+
+The high-level vision, biological inspiration and conceptual system roles are recorded separately from detailed system specifications. See [Conceptual System Map](02-architecture/HIGH-LEVEL-SYSTEM-MAP.md). This conceptual map is not an implementation report.
 
 ## Current architectural direction
 
