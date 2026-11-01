@@ -51,11 +51,18 @@ The important conceptual point is bounded protective autonomy. Protection should
 
 The concrete Immune System V1 specification, component design, tests and frozen implementation status are documented separately. They are not defined by this conceptual map.
 
-### Nervous — information coordination
+### Nervous — thought process and information coordination
 
-The conceptual role of organizing and coordinating information relevant to cognition and system activity.
+The conceptual role associated with the system's thinking and analysis process and the flow of information through the cognitive/body system.
 
-It may help connect information, cognitive work and the use of capabilities. Its exact boundary relative to Model's own reasoning remains open. The biological analogy alone is not a reason to create a separate module.
+Responsibilities discussed include:
+- organize and process information relevant to the current situation;
+- support analysis, reasoning, planning and decision-making;
+- coordinate information flow between cognition and functional capabilities;
+- handle relevant events and state feedback;
+- help connect the current cognitive state with incoming information and execution results.
+
+The exact division between Model's core cognition and the Nervous role remains an important open design question. This conceptual responsibility must not be interpreted as a finalized internal architecture.
 
 ### Sensory — perception and input
 
@@ -63,11 +70,22 @@ The role of receiving information from the user and the external environment and
 
 The required modalities and internal organization have not been finalized. Different input sources may eventually be handled by specialized adapters rather than one monolithic component.
 
-### Execution — action and feedback
+### Execution — task realization and action
 
-The role of carrying out actions selected by Model through available tools or capabilities, then returning outcomes and failures.
+The role closely connected to Nervous: it turns plans and decisions into actual work and returns the results so the cognitive process can continue.
 
-The conceptual loop is plan, act, observe the result and decide what comes next. The exact task model, lifecycle and division of orchestration responsibilities remain open.
+Responsibilities discussed include:
+- create and decompose tasks from an intended action;
+- invoke tools and functional capabilities;
+- coordinate sub-agent work when needed;
+- manage execution progress and relevant task state;
+- support synchronous or asynchronous execution where appropriate;
+- return results and feedback;
+- handle execution failures, recovery decisions and task completion.
+
+The conceptual relationship is: **Nervous thinks, analyzes and plans; Execution carries out the work; the results flow back to Nervous for evaluation.**
+
+Whether task lifecycle management is an internal responsibility of Execution or should eventually be represented as a distinct Task System has not been settled. Do not assume Task System is already a separately approved conceptual subsystem or that Runtime owns task scheduling.
 
 ### Metabolism / Energy — resource sustainability
 
@@ -92,7 +110,7 @@ One broad pattern discussed is:
 5. The result becomes new information for Model to evaluate.
 6. The cycle continues, changes direction or ends.
 
-Nervous may contribute to information organization and coordination across this cycle. Immune may act within its protection responsibility when needed. Metabolism / Energy and Homeostasis are potential supporting roles whose actual need and boundaries remain to be established.
+Nervous participates in thinking, analysis, planning and information coordination across this cycle. Execution is closely coupled to Nervous through task realization and feedback. Immune may act within its protection responsibility when needed. Metabolism / Energy and Homeostasis are potential supporting roles whose actual need and boundaries remain to be established.
 
 This is an explanatory pattern, not a mandatory pipeline. Real interactions may be iterative, partial or event-driven.
 
@@ -122,7 +140,9 @@ This records a previous sequencing idea only. It is not a binding implementation
 
 - What should the complete cognitive cycle of Model look like?
 - Which conceptual roles genuinely need to be distinct systems?
-- What belongs to Model itself versus Nervous coordination?
+- What belongs to Model's central cognition versus the Nervous thinking/coordination role?
+- What is the exact boundary between Nervous and Execution?
+- Should task lifecycle management remain within Execution or become a distinct Task System?
 - What forms of autonomy are necessary for each role?
 - How should Memory's retention durations and information types relate?
 - What should Sensory perceive, and how should different inputs be represented?
