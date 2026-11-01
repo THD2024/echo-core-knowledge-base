@@ -29,8 +29,8 @@ The following are design concepts or planned systems, not implementation claims:
 - Runtime-owned resource lifecycle;
 - Memory;
 - Unified Interface;
-- Task System;
-- Nervous System.
+- Nervous and Execution conceptual roles (their actual implementation status has not been established here);
+- A distinct Task System (whether this should exist separately from Execution remains an open conceptual question).
 
 ## Required verification before implementation
 
