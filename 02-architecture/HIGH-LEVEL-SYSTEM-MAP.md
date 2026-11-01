@@ -104,10 +104,10 @@ For Echo Core, the idea is to maintain awareness of important operating conditio
 One broad pattern discussed is:
 
 1. Sensory capabilities bring information into the system.
-2. Model interprets the information and may draw on Memory.
-3. Model reasons, plans and selects an action.
-4. Execution carries out the selected action.
-5. The result becomes new information for Model to evaluate.
+2. Model receives and interprets the information and may draw on Memory.
+3. Nervous supports the thinking process: analysis, planning, decision-making and information coordination.
+4. Execution turns the selected plan into tasks and actions through tools or functional capabilities.
+5. Execution returns results, progress and failure feedback to the cognitive process; Nervous and Model can evaluate and adjust.
 6. The cycle continues, changes direction or ends.
 
 Nervous participates in thinking, analysis, planning and information coordination across this cycle. Execution is closely coupled to Nervous through task realization and feedback. Immune may act within its protection responsibility when needed. Metabolism / Energy and Homeostasis are potential supporting roles whose actual need and boundaries remain to be established.
