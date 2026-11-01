@@ -1,6 +1,6 @@
 # Implementation Status
 
-Last reconciled: 2026-11-01
+Last reconciled: 2026-11-01 against source snapshot `14ecf7deef8f7c4db325888e5056031e730dac1c`.
 
 ## Verified and frozen
 
@@ -9,43 +9,71 @@ Last reconciled: 2026-11-01
 - Formal acceptance completed.
 - Final PID identity verification passed, including formal path, SHA256, creation time, parent process and pre-start disk hash validation.
 - C4_normal and C2_bad_params stats.jsonl raw records, CID association and seven diagnostic-field persistence checks passed.
-- R1 existing-system/runtime audit passed.
-- R2 local deployment/environment audit passed.
+- R1/R2 and supplementary acceptance records are archived in the source repository.
 - Protection logic must not be changed as part of speculative Runtime architecture work.
 
-The exact audit artifacts and paths must be taken from the source project/evidence archive; this knowledge base does not invent them.
+The committed source contains the Core-side diagnostic schema/classifier and event publication paths. The C1 `context-gate` consumer is referenced as a deployed user-config plugin in reports, but no `context-gate/` implementation path is present in the committed repository tree. Its implementation/evidence must be separately archived before claiming the entire deployed chain is reproducible from this repository.
 
-## Not established as implemented
+## Implemented capabilities observed in source
 
-The following are design concepts or planned systems, not implementation claims:
-- Core Runtime V1;
-- Runtime lifecycle state machine as described in the design;
-- Runtime Bootstrap;
-- Core Assembly;
-- Runtime Context and Capability Views;
-- unified configuration snapshot;
-- shared logging conventions/infrastructure;
-- shared error conventions/infrastructure;
-- Runtime-owned resource lifecycle;
-- Memory;
-- Unified Interface;
-- Nervous and Execution conceptual roles (their actual implementation status has not been established here);
-- A distinct Task System (whether this should exist separately from Execution remains an open conceptual question).
+These are existing MiMoCode-derived capabilities, not proof that the full conceptual Echo systems have reached their intended final form.
 
-## Required verification before implementation
+### Runtime foundations
+- Effect `ManagedRuntime` is used by `AppRuntime` and `BootstrapRuntime`.
+- Effect Layers assemble application services.
+- `Instance.provide` caches and scopes project instances, tracks active requests/executions and disposes per-directory state.
+- `InstanceBootstrap` loads configuration, initializes plugins and supporting services, starts Memory reconciliation in the background, and subscribes Metrics.
+- The proposed Echo Core Runtime V1 is **not** implemented as a distinct Echo-specific runtime with its accepted lifecycle, Host, Runtime Context/Capability Views and resource-ownership contract.
 
-R0 must inspect the actual source repository and establish:
-- repository URL, branch and exact commit SHA;
-- language, runtime and dependency versions;
-- actual application entry point and startup/shutdown path;
-- existing configuration loading and precedence;
-- logging and error-handling facilities;
-- existing dependency/context/container patterns;
-- ownership and cleanup of current long-lived resources;
-- Immune V1 boundaries and regression protection;
-- local deployment and test commands.
+### Memory
+- Markdown files are the durable memory source; SQLite FTS5 is a search index.
+- `Memory.Service` exposes `root`, `reconcile` and `search`; it has no direct write/delete API.
+- Search uses FTS5 BM25, with configurable filters and result floor; no vector/embedding semantic retrieval was found in the inspected implementation.
+- Memory writes occur through file/tool paths and agent/checkpoint workflows, guarded by memory path/write-gate logic.
+- Status: **Implemented, with known architectural and retrieval limitations**; not “not implemented”.
 
-Do not infer current implementation from architecture notes alone.
+### Nervous / coordination
+- Main cognition/coordination is concentrated in the SessionPrompt run loop and associated session/processor logic.
+- Effect Bus, TaskRegistry, Actor/Subagent, plan mode, goal checks and context/checkpoint mechanisms are implemented.
+- Planning and decomposition remain substantially model/prompt-driven; Bus is best-effort event delivery, not a guaranteed durable message bus.
+- Status: **Partially implemented capability set**, not a complete independent Nervous system specification.
+
+### Execution
+- Tool registration and execution flow, ToolGate, ToolSettlement, actor/subagent execution, result feedback and recovery mechanisms exist.
+- Archived Phase 2 assessment identifies known limitations, including local-tool timeout gaps and failure-reporting issues.
+- L2 bash non-zero exit handling is present in the imported source: it publishes an error ToolCall with diagnostic data instead of recording every bash result as success. This should still be covered by the archived regression evidence and revalidated against the snapshot.
+- Status: **Implemented capability set with known gaps**, not a complete autonomous execution architecture.
+
+### Task Registry
+- SQL-backed task tree, task events and task lifecycle operations exist.
+- Task Registry existence does not imply automatic planning, DAG scheduling or a distinct Task System approved as part of the future Echo architecture.
+
+## Not established as implemented in the intended Echo architecture
+
+- Core Runtime V1 as a distinct Echo-specific architecture;
+- accepted Runtime lifecycle state machine;
+- Runtime Bootstrap contract as specified in CORE-RUNTIME-V1;
+- Core Assembly as a distinct application assembly responsibility;
+- Runtime Context and per-system Capability Views;
+- unified configuration snapshot and accepted Runtime-wide logging/error contracts;
+- accepted Runtime-owned resource lifecycle;
+- Unified Interface as the agreed Model↔Body communication protocol;
+- complete Model/Nervous cognitive architecture;
+- semantic Memory retrieval, verified memory confidence lifecycle and complete memory governance.
+
+## Required R0 reconciliation
+
+Before implementation:
+- compare current source snapshot with R1/R2 and Phase 2 report baselines;
+- resolve CLI package version 0.1.15 vs PHASE-STATUS v0.1.16;
+- verify ManagedRuntime disposal and Database.close wiring;
+- inspect process-level shutdown and Instance disposal paths;
+- identify C1 external plugin source and exact deployed revision;
+- recheck Memory write-path security, including shell/bypass boundaries;
+- validate L2 bash error reporting and Immune freeze regression evidence;
+- separate static code presence from tests actually run against this exact snapshot.
+
+No local build or test suite has been run as part of this static source inspection.
 
 ## Change recording template
 
