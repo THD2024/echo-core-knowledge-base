@@ -49,7 +49,7 @@ The protective role: detect and respond to conditions that threaten the system w
 
 The important conceptual point is bounded protective autonomy. Protection should not have to wait for Model to approve every protective action, while Model must not have unrestricted authority to disable protection. Critical protection authority remains subject to the user's explicit control.
 
-The concrete Immune System V1 specification, component design, tests and frozen implementation status are documented separately. They are not defined by this conceptual map.
+The concrete Immune System V1 specification, component design and verification evidence belong in the detailed system-specification layer, not in this conceptual map. The current knowledge base records its high-level responsibilities and verified/frozen status, but does not yet contain the complete V1 specification or raw audit artifacts; those must be linked or imported from the canonical project sources.
 
 ### Nervous — thought process and information coordination
 
