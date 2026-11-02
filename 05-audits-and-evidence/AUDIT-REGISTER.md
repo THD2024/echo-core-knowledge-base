@@ -60,3 +60,47 @@ Each entry should identify:
 - raw evidence location;
 - result and unresolved findings;
 - reviewer/acceptance status.
+
+
+## R0 — Runtime ownership findings (local source audit)
+
+- Status: **Scoped audit completed; findings recorded; remediation/design open**.
+- Audit ID: `R0-LOCAL-REF-001`.
+- Source baseline: main snapshot `14ecf7deef8f7c4db325888e5056031e730dac1c`; local HEAD `432ffd9881587c4502a08c8cf2c1a710f7d787b3` was a descendant containing only Capability Authorization files relative to that baseline.
+- Findings:
+  - `BootstrapRuntime` has real production call paths.
+  - `AppRuntime.dispose()` had no observed production call sites in the inspected source.
+  - `Database.close()` had no observed production call sites; it calls `Client()`, so closing an uninitialized Database can trigger initialization before shutdown.
+  - Runtime factories expose inconsistent disposal/ownership contracts; some ManagedRuntime wrappers do not expose disposal.
+  - Database is a process-level lazy singleton and requires an explicit process-level lifecycle owner.
+  - TUI Worker shutdown has a bounded wait before termination; Serve shutdown paths did not show complete AppRuntime/Database release wiring.
+  - Detached bootstrap fibers and OTEL layer finalizers remain areas for careful lifecycle integration.
+- Limitation: this records the scoped source audit findings, not a completed remediation or production shutdown acceptance. Some report tables had archival blanks; those do not invalidate the core findings.
+
+## R1 — Lifecycle primitive and CoreRuntime facade local verification
+
+- Status: **PASS for the isolated primitive/API slice; R1 overall remains open**.
+- Branch: `runtime-core/lifecycle-v1`.
+- Verified commit: [`03732e8551b79da177c1fae44273dc00c4604fd9`](https://github.com/THD2024/echo-core/commit/03732e8551b79da177c1fae44273dc00c4604fd9).
+- Local report: `R1-LOCAL-TEST-003`.
+- Lifecycle state machine and CoreRuntime facade tests: 18/18 passed, repeated six times; original rejection-handling test also passed independently.
+- Typecheck: exit 1 due to 12 pre-existing errors also present on main; no reported type errors in the new `echo-runtime` files.
+- Scope limitation: no production Host integration, AppRuntime/BootstrapRuntime integration, resource ownership implementation, or full R1 acceptance is implied.
+
+## D-010 — Effect resource lifecycle verification
+
+- Status: **PASS — tested Effect behavior verified; Echo ownership architecture remains open**.
+- Date: 2026-11-02.
+- Dependency: locally confirmed `effect@4.0.0-beta.48`.
+- Local repository HEAD: [`03732e8551b79da177c1fae44273dc00c4604fd9`](https://github.com/THD2024/echo-core/commit/03732e8551b79da177c1fae44273dc00c4604fd9); working tree remained clean.
+- Experiment scripts were outside the repository at `C:\\Temp\\d010-verify\\`; no source, tests, configuration, or dependencies were modified.
+- Verified:
+  - same MemoMap + same Layer object shares one resource Scope; the last observer's disposal triggers the Finalizer once;
+  - different Layer objects providing the same Service build/release independently;
+  - same-Scope Finalizers execute in reverse registration order; direct Scope and `mergeAll`, `provideMerge`, and explicit `buildWithScope` experiments agreed;
+  - repeated/concurrent disposal did not duplicate Finalizer execution in tested scenarios;
+  - ManagedRuntime disposal does not interrupt or await business Fibers started with `runFork`.
+- All reported local experiment commands exited 0.
+- Detailed evidence: [D-010 Effect Resource Lifecycle Verification](D-010-EFFECT-RESOURCE-LIFECYCLE-VERIFICATION.md).
+- Limitation: these are Effect dependency behavior findings, not proof that all production Runtime factories or shutdown paths are correct. They do not decide whether Echo needs a resource registry or dependency DAG.
+- Next: draft and review the D-010 ownership architecture before implementation.
