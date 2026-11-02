@@ -19,10 +19,12 @@
 ## Current project status
 
 - **Verified / Frozen:** Echo Immune System V1.
-- **Verified:** R1 existing-system/runtime audit; R2 local deployment/environment audit.
-- **Accepted design direction:** build Core Runtime incrementally by reusing the existing environment, after a fresh R0 code and environment audit.
-- **Not yet implemented:** Core Runtime V1, Memory, Unified Interface, Task System, Nervous System, and Core Assembly as described in design discussions.
-- **Current focus:** establish a reliable engineering knowledge base, then inspect the actual Echo Core repository and perform R0 before changing runtime code.
+- **Verified historical audits:** R1 existing-system/runtime audit and R2 local deployment/environment audit.
+- **R1 implementation slice verified:** Lifecycle state machine and Host-facing CoreRuntime facade on isolated branch `runtime-core/lifecycle-v1`; not production-integrated and not full R1 acceptance.
+- **D-010 Effect behavior verified:** shared MemoMap/Layer lifetime, Layer identity, Scope LIFO, tested disposal idempotency, and ManagedRuntime/Fiber separation for `effect@4.0.0-beta.48`.
+- **Still under design:** Echo-level resource ownership architecture and shutdown protocol; no ResourceManager implementation started.
+- **Not yet implemented as complete intended architectures:** Core Runtime V1, Memory, Unified Interface, Task System, Nervous System, and Core Assembly.
+- **Current focus:** draft and review D-010 resource ownership boundaries before implementation.
 
 ## Documentation map
 
@@ -50,7 +52,8 @@ These documents specify particular systems or concrete architectural boundaries.
 
 - [Current State](CURRENT-STATE.md) — concise status and next action.
 - [Implementation Status](04-implementation-status/STATUS.md) — implemented vs. planned.
-- [Audit Register](05-audits-and-evidence/AUDIT-REGISTER.md) — R1/R2 and Immune V1 evidence register.
+- [Audit Register](05-audits-and-evidence/AUDIT-REGISTER.md) — R0/R1/D-010, R1/R2 and Immune V1 evidence register.
+- [D-010 Effect Resource Lifecycle Verification](05-audits-and-evidence/D-010-EFFECT-RESOURCE-LIFECYCLE-VERIFICATION.md) — local source and experiment evidence for Effect Scope, Layer, MemoMap and ManagedRuntime behavior.
 - [AI Collaboration](AI-COLLABORATION.md) — working protocol for future assistant sessions.
 
 **Classification rule:** Overall philosophy and conceptual system roles belong to section A. A concrete system specification such as Immune System V1 or Core Runtime V1 belongs to section B. Implementation facts and verification evidence belong to section C. A document may cross-reference another layer, but must not merge their status or level of detail.
