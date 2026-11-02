@@ -5,7 +5,7 @@
 - Source repository: [THD2024/echo-core](https://github.com/THD2024/echo-core)
 - Local repository HEAD used by the experiments: [`03732e8551b79da177c1fae44273dc00c4604fd9`](https://github.com/THD2024/echo-core/commit/03732e8551b79da177c1fae44273dc00c4604fd9), branch `runtime-core/lifecycle-v1`
 - Dependency: `effect@4.0.0-beta.48`, confirmed from `packages/cli/node_modules/effect/package.json`
-- Experiment scripts: `C:\\Temp\\d010-verify\\` (outside the repository)
+- Experiment scripts: `C:\Temp\d010-verify\` (outside the repository)
 - Repository integrity: `git status --porcelain` remained empty; no source, test, configuration, or dependency changes were made.
 - All reported experiment commands exited with code 0.
 
