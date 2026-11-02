@@ -93,7 +93,7 @@ Each entry should identify:
 - Date: 2026-11-02.
 - Dependency: locally confirmed `effect@4.0.0-beta.48`.
 - Local repository HEAD: [`03732e8551b79da177c1fae44273dc00c4604fd9`](https://github.com/THD2024/echo-core/commit/03732e8551b79da177c1fae44273dc00c4604fd9); working tree remained clean.
-- Experiment scripts were outside the repository at `C:\\Temp\\d010-verify\\`; no source, tests, configuration, or dependencies were modified.
+- Experiment scripts were outside the repository at `C:\Temp\d010-verify\`; no source, tests, configuration, or dependencies were modified.
 - Verified:
   - same MemoMap + same Layer object shares one resource Scope; the last observer's disposal triggers the Finalizer once;
   - different Layer objects providing the same Service build/release independently;
