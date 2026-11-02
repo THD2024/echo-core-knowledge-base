@@ -1,6 +1,6 @@
 # Implementation Status
 
-Last reconciled: 2026-11-01 against source snapshot `14ecf7deef8f7c4db325888e5056031e730dac1c`.
+Last reconciled: 2026-11-02; source inspection baseline remains `14ecf7deef8f7c4db325888e5056031e730dac1c`.
 
 ## Verified and frozen
 
@@ -23,7 +23,11 @@ These are existing MiMoCode-derived capabilities, not proof that the full concep
 - Effect Layers assemble application services.
 - `Instance.provide` caches and scopes project instances, tracks active requests/executions and disposes per-directory state.
 - `InstanceBootstrap` loads configuration, initializes plugins and supporting services, starts Memory reconciliation in the background, and subscribes Metrics.
-- The proposed Echo Core Runtime V1 is **not** implemented as a distinct Echo-specific runtime with its accepted lifecycle, Host, Runtime Context/Capability Views and resource-ownership contract.
+- The proposed Echo Core Runtime V1 is **not** integrated as a complete production architecture with its accepted Host, Runtime Context/Capability Views and resource-ownership contract.
+- An isolated branch, `runtime-core/lifecycle-v1`, contains the Lifecycle state machine and Host-facing `CoreRuntime` facade. Commit [`03732e8`](https://github.com/THD2024/echo-core/commit/03732e8551b79da177c1fae44273dc00c4604fd9) passed focused local verification: 18/18 tests, repeated six times. This is a verified primitive/API slice, not full R1 acceptance or production integration.
+- The focused typecheck still exits 1 due to 12 historical errors also present on the main baseline; the new `echo-runtime` files introduced no reported type errors.
+- D-010 local experiments against Effect `4.0.0-beta.48` verified shared MemoMap observer lifetime, Layer identity behavior, same-Scope LIFO Finalizers, disposal idempotency in tested scenarios, and the fact that ManagedRuntime disposal does not drain/interrupt business Fibers. See [D-010 verification report](../05-audits-and-evidence/D-010-EFFECT-RESOURCE-LIFECYCLE-VERIFICATION.md).
+- The D-010 resource ownership architecture is still **proposed / under design**; no Echo ResourceManager or ownership registry has been implemented.
 
 ### Memory
 - Markdown files are the durable memory source; SQLite FTS5 is a search index.
@@ -56,7 +60,7 @@ These are existing MiMoCode-derived capabilities, not proof that the full concep
 - Core Assembly as a distinct application assembly responsibility;
 - Runtime Context and per-system Capability Views;
 - unified configuration snapshot and accepted Runtime-wide logging/error contracts;
-- accepted Runtime-owned resource lifecycle;
+- accepted Echo-level resource ownership and shutdown protocol (Effect Scope/MemoMap primitives have been verified, but Echo Owner policy is not implemented);
 - Unified Interface as the agreed Model↔Body communication protocol;
 - complete Model/Nervous cognitive architecture;
 - semantic Memory retrieval, verified memory confidence lifecycle and complete memory governance.
@@ -86,3 +90,8 @@ For each future change, record:
 - results and evidence;
 - status label (Implemented / Verified / Accepted / Proposed / Open);
 - rollback path or known risk.
+
+
+## 2026-11-02 progress boundary
+
+The D-010 audit is evidence about the behavior of the pinned Effect dependency, not an acceptance of a specific Echo resource-management architecture. The next step is design review of Host / Process Owner / Core Runtime / Feature Owner authority and shutdown responsibilities. Do not start implementation until that design is approved.
